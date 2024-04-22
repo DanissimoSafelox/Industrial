@@ -1,0 +1,272 @@
+[gd_scene load_steps=22 format=3 uid="uid://bsthp2ja30od2"]
+
+[ext_resource type="Script" path="res://Enemy/Visor/visor.gd" id="1_jju5o"]
+[ext_resource type="Texture2D" uid="uid://n1pcwk473yv0" path="res://Enemy/Visor/Visor.png" id="1_y2vky"]
+[ext_resource type="PackedScene" uid="uid://doy0m8otc8qq4" path="res://Entities_stats/hurt_box.tscn" id="2_b26jd"]
+[ext_resource type="Shader" path="res://Effects/WhiteShader.gdshader" id="2_m8fk0"]
+[ext_resource type="PackedScene" uid="uid://4n51yy0ou82g" path="res://Entities_stats/health_stat.tscn" id="3_yoiiy"]
+[ext_resource type="PackedScene" uid="uid://chg76jo6v7bbj" path="res://Entities_stats/vision_zone.tscn" id="6_gg3nh"]
+[ext_resource type="PackedScene" uid="uid://bcjbvguge15dv" path="res://Entities_stats/vision_ray.tscn" id="7_cn3bh"]
+[ext_resource type="PackedScene" uid="uid://cp24dpnplyod3" path="res://Entities_stats/hit_box.tscn" id="8_74xmo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o11be"]
+resource_local_to_scene = true
+shader = ExtResource("2_m8fk0")
+shader_parameter/active = true
+
+[sub_resource type="Animation" id="Animation_np2y6"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_ik7el"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_trq05"]
+_data = {
+"idle": SubResource("Animation_np2y6"),
+"run": SubResource("Animation_ik7el")
+}
+
+[sub_resource type="Animation" id="Animation_w8ivr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_sprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main_sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d28l2"]
+resource_name = "death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_sprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main_sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.04, 1), Vector2(0.04, 0.018)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["res://Sounds/Enemy_hit.wav"],
+"method": &"create_one_sound"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y7co6"]
+resource_name = "start"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_sprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["res://Sounds/Enemy_hit.wav"],
+"method": &"create_one_sound"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ds8ls"]
+resource_name = "stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_sprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_202xg"]
+_data = {
+"RESET": SubResource("Animation_w8ivr"),
+"death": SubResource("Animation_d28l2"),
+"start": SubResource("Animation_y7co6"),
+"stop": SubResource("Animation_ds8ls")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sun5"]
+size = Vector2(13, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7wvb"]
+size = Vector2(12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f332k"]
+radius = 120.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocgfi"]
+size = Vector2(13, 14)
+
+[node name="Visor" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 129
+script = ExtResource("1_jju5o")
+
+[node name="Main_sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_o11be")
+texture = ExtResource("1_y2vky")
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_trq05")
+}
+autoplay = "idle"
+
+[node name="AnimationBlink" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_202xg")
+}
+autoplay = "stop"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2sun5")
+
+[node name="Health_stat" parent="." node_paths=PackedStringArray("blink") instance=ExtResource("3_yoiiy")]
+blink = NodePath("../AnimationBlink")
+MAX_HEALTH = 8
+
+[node name="Hurt_Box" parent="." node_paths=PackedStringArray("health_stat") instance=ExtResource("2_b26jd")]
+collision_layer = 8
+collision_mask = 16
+health_stat = NodePath("../Health_stat")
+
+[node name="CollisionShape2D" parent="Hurt_Box" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_m7wvb")
+
+[node name="Vision_zone" parent="." instance=ExtResource("6_gg3nh")]
+
+[node name="CollisionShape2D" parent="Vision_zone" index="0"]
+rotation = -1.57079
+shape = SubResource("CircleShape2D_f332k")
+
+[node name="Vision_ray" parent="." node_paths=PackedStringArray("vision_zone") instance=ExtResource("7_cn3bh")]
+target_position = Vector2(0, 0)
+vision_zone = NodePath("../Vision_zone")
+
+[node name="Hit_Box" parent="." instance=ExtResource("8_74xmo")]
+collision_layer = 32
+collision_mask = 4
+DAMAGE = 1
+KNOCKBACK_POWER = 100
+
+[node name="CollisionShape2D" parent="Hit_Box" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ocgfi")
+
+[node name="Pit_detector" type="RayCast2D" parent="."]
+target_position = Vector2(0, 30)
+
+[node name="Platform_detector" type="RayCast2D" parent="."]
+position = Vector2(5, 0)
+target_position = Vector2(30, -40)
+
+[node name="Wall_detector" type="RayCast2D" parent="."]
+position = Vector2(0, 7)
+target_position = Vector2(10, 0)
+
+[node name="Wandering_time" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationBlink" to="." method="_on_animation_blink_animation_finished"]
+[connection signal="no_health" from="Health_stat" to="." method="_on_health_stat_no_health"]
+[connection signal="is_visible" from="Vision_ray" to="." method="_on_vision_ray_is_visible"]
+[connection signal="timeout" from="Wandering_time" to="." method="_on_wandering_time_timeout"]
+
+[editable path="Hurt_Box"]
+[editable path="Vision_zone"]
+[editable path="Hit_Box"]

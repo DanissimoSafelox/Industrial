@@ -1,0 +1,138 @@
+[gd_scene load_steps=10 format=3 uid="uid://5cdlssnarvb5"]
+
+[ext_resource type="PackedScene" uid="uid://bxsnbdom55php" path="res://Assets/tile_map.tscn" id="1_1diny"]
+[ext_resource type="Script" path="res://Levels/Level.gd" id="1_yelt2"]
+[ext_resource type="PackedScene" uid="uid://dbc4yh8bjy7q4" path="res://Interactive_objects/Trash_saver/trash_saver.tscn" id="2_732kb"]
+[ext_resource type="Texture2D" uid="uid://dnrlpwqqph4am" path="res://Assets/Zavod.jpg" id="2_i270r"]
+[ext_resource type="PackedScene" uid="uid://df0n802ei01l2" path="res://Enemy/Turret/turret.tscn" id="3_7fpdb"]
+[ext_resource type="PackedScene" uid="uid://bsthp2ja30od2" path="res://Enemy/Visor/visor.tscn" id="4_7e4e0"]
+[ext_resource type="PackedScene" uid="uid://vgc5dhab0eqs" path="res://Interactive_objects/Door/door.tscn" id="5_b2ddx"]
+[ext_resource type="PackedScene" uid="uid://civmd0jvf7wd" path="res://camera_area.tscn" id="7_rxjox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmb4u"]
+size = Vector2(32, 6)
+
+[node name="Industrial_level_1" type="Node2D" node_paths=PackedStringArray("camera_area")]
+script = ExtResource("1_yelt2")
+camera_area = NodePath("Camera_area")
+
+[node name="Zavod" type="Sprite2D" parent="."]
+modulate = Color(0.12549, 0.737255, 0.835294, 0.85098)
+position = Vector2(232.5, 56.5)
+scale = Vector2(1.47647, 1.355)
+texture = ExtResource("2_i270r")
+
+[node name="TileMap" parent="." instance=ExtResource("1_1diny")]
+layer_0/tile_data = PackedInt32Array(589824, 851968, 0, 589825, 851968, 0, 589826, 917504, 0, 589827, 851968, 0, 589828, 851968, 0, 589829, 851968, 0, 589830, 851968, 0, 589831, 851968, 0, 589832, 851968, 0, 589833, 851968, 0, 589834, 851968, 0, 589835, 851968, 0, 589836, 851968, 0, 589837, 851968, 0, 655373, 851968, 0, 589840, 851968, 0, 655376, 851968, 0, 720912, 851968, 0, 720909, 851968, 0, 589841, 851968, 0, 589842, 851968, 0, 458772, 851968, 0, 458773, 851968, 0, 458774, 851968, 0, 458775, 851968, 0, 458776, 851968, 0, 458777, 851968, 0, 458778, 851968, 0, 458779, 851968, 0, 458780, 851968, 0, 458781, 851968, 0, 655378, 851968, 0, 655379, 851968, 0, 720915, 851968, 0, 720916, 851968, 0, 720917, 851968, 0, 720918, 851968, 0, 720919, 851968, 0, 720920, 851968, 0, 720921, 851968, 0, 720922, 851968, 0, 720923, 851968, 0, 720924, 851968, 0, 720925, 851968, 0, 720926, 851968, 0, 720927, 851968, 0, 720928, 851968, 0, 589857, 851968, 0, 589858, 851968, 0, 720929, 851968, 0, 720930, 851968, 0, 720931, 851968, 0, 720932, 851968, 0, 524322, 851968, 0, 458786, 851968, 0, 393250, 851968, 0, 327714, 851968, 0, 458782, 851968, 0, 458783, 851968, 0, 655359, 917504, 0, 458751, 917504, 0, 393215, 917504, 0, 327679, 917504, 0, 262143, 917504, 0, 720933, 917504, 0, 655397, 917504, 0, 589861, 917504, 0, 589860, 917504, 0, 458787, 917504, 0, 720908, 917504, 0, 720907, 917504, 0, 720906, 917504, 0, 720905, 917504, 0, 720904, 917504, 0, 720903, 917504, 0, 720902, 917504, 0, 655372, 917504, 0, 655371, 917504, 0, 655370, 917504, 0, 655369, 917504, 0, 655368, 917504, 0, 655367, 917504, 0, 720901, 917504, 0, 720900, 917504, 0, 655365, 917504, 0, 655366, 917504, 0, 655364, 917504, 0, 655363, 917504, 0, 720899, 917504, 0, 720898, 917504, 0, 655362, 917504, 0, 655361, 917504, 0, 655360, 917504, 0, 720895, 917504, 0, 720897, 917504, 0, 720896, 917504, 0, 786431, 917504, 0, 655377, 851968, 0, 720913, 851968, 0, 720914, 851968, 0, -262145, 851968, 0, -327680, 851968, 0, -327679, 851968, 0, -327678, 851968, 0, -327677, 851968, 0, -327676, 851968, 0, -327675, 851968, 0, -327674, 851968, 0, -327673, 851968, 0, -327672, 851968, 0, -327671, 851968, 0, -327670, 851968, 0, -327669, 851968, 0, -327668, 851968, 0, -327667, 851968, 0, -327666, 851968, 0, -327665, 851968, 0, -327664, 851968, 0, -327663, 851968, 0, -327662, 851968, 0, -327661, 851968, 0, -327660, 851968, 0, -327659, 851968, 0, -327658, 851968, 0, -327657, 851968, 0, -327656, 851968, 0, -327655, 851968, 0, 393216, 851968, 0, 393217, 851968, 0, 393218, 851968, 0, 393219, 917504, 0, 327682, 851968, 0, 327681, 851968, 0, 327680, 851968, 0, 262144, 851968, 0, 262145, 851968, 0, 196608, 851968, 0, 393220, 917504, 0, 393221, 917504, 0, 393222, 917504, 0, 131075, 917504, 0, 131076, 917504, 0, 131077, 917504, 0, 131078, 917504, 0, 131079, 917504, 0, 393223, 917504, 0, 131088, 917504, 0, 131089, 917504, 0, 131090, 917504, 0, 131091, 917504, 0, 131092, 917504, 0, 131093, 917504, 0, 131094, 917504, 0, 196631, 917504, 0, 262168, 917504, 0, 262169, 917504, 0, 196630, 917504, 0, 262167, 917504, 0, 327700, 917504, 0, 327701, 917504, 0, 262165, 917504, 0, 262164, 917504, 0, 196628, 917504, 0, 196629, 917504, 0, 196627, 917504, 0, 196626, 917504, 0, 196625, 917504, 0, 196624, 917504, 0, 262162, 917504, 0, 262161, 917504, 0, 262163, 917504, 0, 327699, 917504, 0, 327698, 917504, 0, 131080, 917504, 0, 65544, 917504, 0, 9, 917504, 0, 10, 917504, 0, 8, 917504, 0, 65552, 917504, 0, 16, 917504, 0, 65553, 917504, 0, 393224, 851968, 0, -327654, 851968, 0, -327653, 851968, 0, -327652, 851968, 0, -327651, 851968, 0, -327650, 851968, 0, -327649, 851968, 0, -327648, 851968, 0, -327647, 851968, 0, -327646, 851968, 0, -327645, 851968, 0, -327644, 851968, 0, -327643, 851968, 0, -327642, 851968, 0, -262106, 851968, 0, -196570, 851968, 0, -131034, 851968, 0, -65498, 851968, 0, 38, 851968, 0, 65574, 851968, 0, 131110, 851968, 0, 196646, 851968, 0, 262182, 851968, 0, 327718, 851968, 0, 393254, 851968, 0, 458790, 851968, 0, 524326, 851968, 0, 589862, 851968, 0, 655398, 851968, 0, 720934, 851968, 0, 524323, 851968, 0, 589859, 851968, 0, 131099, 851968, 0, 131100, 851968, 0, 131101, 851968, 0, 131102, 851968, 0, 131103, 851968, 0, 131104, 851968, 0, 196640, 851968, 0, 262176, 851968, 0, 262177, 851968, 0, 655358, 917504, 0, 655357, 917504, 0, 655356, 917504, 0, 655355, 917504, 0, 720894, 917504, 0, 786430, 917504, 0, 786429, 917504, 0, 786428, 917504, 0, 720892, 917504, 0, 720893, 917504, 0, 720891, 917504, 0, 786427, 917504, 0, 786426, 917504, 0, 720890, 917504, 0, 655354, 917504, 0, -262146, 917504, 0, -262147, 917504, 0, -262148, 917504, 0, -262149, 917504, 0, -262150, 917504, 0, -262151, 917504, 0, -262152, 917504, 0, -262153, 917504, 0, 458748, 917504, 0, 458749, 917504, 0, 458750, 917504, 0, 655353, 917504, 0, 589817, 917504, 0, 589816, 917504, 0, 589815, 917504, 0, 524279, 917504, 0, 524280, 917504, 0, 786425, 917504, 0, 720889, 917504, 0, 720888, 917504, 0, 786424, 917504, 0, 655352, 917504, 0, 655351, 917504, 0, 720887, 917504, 0, 786423, 917504, 0, -131068, 917504, 0, -131069, 917504, 0, -131070, 917504, 0, -131071, 917504, 0, 327678, 917504, 0, 393214, 917504, 0, 393213, 917504, 0, 720935, 917504, 0, 655399, 917504, 0, 589863, 917504, 0, 524327, 917504, 0, 458791, 917504, 0, 393255, 917504, 0, 327719, 917504, 0, 262183, 917504, 0, 196647, 917504, 0, 131111, 917504, 0, 65575, 917504, 0, 39, 917504, 0, -65497, 917504, 0, -131033, 917504, 0, -196569, 917504, 0, -262105, 917504, 0, -327641, 917504, 0, 65569, 917504, 0, 33, 917504, 0, -65503, 917504, 0, -131049, 917504, 0, -131050, 917504, 0, -131042, 917504, 0, -131041, 917504, 0, 393207, 917504, 0, 327671, 917504, 0, 262135, 917504, 0, 196599, 917504, 0, 131063, 917504, 0, 65527, 917504, 0, -9, 917504, 0, -65545, 917504, 0, -131081, 917504, 0, -196617, 917504, 0, 65528, 917504, 0, 65529, 917504, 0, 65530, 917504, 0, 65531, 917504, 0, 524278, 851968, 0, 524277, 851968, 0, 524276, 851968, 0, 524275, 851968, 0, 524274, 851968, 0, 524273, 851968, 0, 524272, 851968, 0, 524271, 851968, 0, 524270, 851968, 0, 524269, 851968, 0, 524268, 851968, 0, 524267, 851968, 0, 524266, 851968, 0, 524265, 851968, 0, 65526, 851968, 0, 65525, 851968, 0, 65524, 851968, 0, 65519, 851968, 0, 65518, 851968, 0, 65517, 851968, 0, 65516, 851968, 0, 65523, 851968, 0, 65522, 851968, 0, 65521, 851968, 0, 65520, 851968, 0, 65514, 851968, 0, 65513, 851968, 0, 65515, 851968, 0, 131049, 851968, 0, 196585, 851968, 0, 458729, 851968, 0, 393193, 851968, 0, 327657, 851968, 0, 262121, 851968, 0, 393202, 851968, 0, 327672, 851968, 0)
+
+[node name="Interactive" type="Node2D" parent="."]
+
+[node name="Trash_saver2" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(160, 128)
+
+[node name="Trash_saver3" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(424, 96)
+
+[node name="Trash_saver4" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(560, 160)
+
+[node name="Trash_saver5" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(576, 160)
+
+[node name="Trash_saver6" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(81, 16)
+
+[node name="Trash_saver7" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(360, 96)
+
+[node name="Trash_saver8" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(-127, -16)
+
+[node name="Trash_saver9" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(-121, -16)
+
+[node name="Trash_saver10" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(-115, -16)
+
+[node name="Trash_saver11" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(0, 32)
+
+[node name="Trash_saver12" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(37, -48)
+
+[node name="Trash_saver13" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(-133, -16)
+
+[node name="Trash_saver14" parent="Interactive" instance=ExtResource("2_732kb")]
+position = Vector2(-133, 96)
+
+[node name="Enemyes" type="Node2D" parent="."]
+
+[node name="Turret" parent="Enemyes" instance=ExtResource("3_7fpdb")]
+position = Vector2(352, 105)
+
+[node name="Turret2" parent="Enemyes" instance=ExtResource("3_7fpdb")]
+position = Vector2(271, 137)
+look_to_left = true
+
+[node name="Turret3" parent="Enemyes" instance=ExtResource("3_7fpdb")]
+position = Vector2(287, 137)
+look_to_left = true
+
+[node name="Turret4" parent="Enemyes" instance=ExtResource("3_7fpdb")]
+position = Vector2(80, 25)
+look_to_left = true
+
+[node name="Turret5" parent="Enemyes" instance=ExtResource("3_7fpdb")]
+position = Vector2(99, 25)
+
+[node name="Turret7" parent="Enemyes" instance=ExtResource("3_7fpdb")]
+position = Vector2(381, 105)
+look_to_left = true
+
+[node name="Turret8" parent="Enemyes" instance=ExtResource("3_7fpdb")]
+position = Vector2(68, -39)
+
+[node name="Turret9" parent="Enemyes" instance=ExtResource("3_7fpdb")]
+position = Vector2(151, -7)
+look_to_left = true
+
+[node name="Visor" parent="Enemyes" instance=ExtResource("4_7e4e0")]
+position = Vector2(406, 168)
+
+[node name="Visor2" parent="Enemyes" instance=ExtResource("4_7e4e0")]
+position = Vector2(518, 168)
+
+[node name="Visor3" parent="Enemyes" instance=ExtResource("4_7e4e0")]
+position = Vector2(164, 136)
+
+[node name="Visor4" parent="Enemyes" instance=ExtResource("4_7e4e0")]
+position = Vector2(360, 24)
+
+[node name="Visor5" parent="Enemyes" instance=ExtResource("4_7e4e0")]
+position = Vector2(-97, -8)
+
+[node name="Visor6" parent="Enemyes" instance=ExtResource("4_7e4e0")]
+position = Vector2(58, 24)
+
+[node name="Visor7" parent="Enemyes" instance=ExtResource("4_7e4e0")]
+position = Vector2(-242, 104)
+
+[node name="Door" parent="." instance=ExtResource("5_b2ddx")]
+position = Vector2(240, 160)
+current_scene = "res://Levels/industrial_level_1.tscn"
+exit_scene = "res://Levels/cube_master_room.tscn"
+enter_vector = Vector2(0, 400)
+exit_vector = Vector2(0, -500)
+
+[node name="CollisionShape2D" parent="Door" index="0"]
+position = Vector2(0, 29)
+shape = SubResource("RectangleShape2D_mmb4u")
+
+[node name="Camera_area" parent="." instance=ExtResource("7_rxjox")]
+offset_left = -368.0
+offset_top = -79.0
+offset_right = 640.0
+offset_bottom = 192.0
+
+[editable path="Door"]

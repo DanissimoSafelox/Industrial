@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://qryajkqk5kpd"]
+
+[ext_resource type="Script" path="res://Effects/coin.gd" id="1_7spqx"]
+[ext_resource type="Texture2D" uid="uid://cbiqpugqs7rp5" path="res://Effects/Coin.png" id="1_g1urc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07i0s"]
+size = Vector2(5, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qu2o5"]
+radius = 3.0
+
+[node name="Coin" type="RigidBody2D"]
+collision_layer = 0
+script = ExtResource("1_7spqx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g1urc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_07i0s")
+
+[node name="Take_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Take_area"]
+shape = SubResource("CircleShape2D_qu2o5")
+
+[connection signal="body_entered" from="Take_area" to="." method="_on_take_area_body_entered"]

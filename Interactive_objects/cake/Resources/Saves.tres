@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Saves" load_steps=2 format=3 uid="uid://dvniyrrl8rqcr"]
+
+[ext_resource type="Script" path="res://Interactive_objects/cake/Resources/Saves.gd" id="1_wb7db"]
+
+[resource]
+script = ExtResource("1_wb7db")
+cash = 52

@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://civmd0jvf7wd"]
+
+[node name="Camera_area" type="ColorRect"]
+color = Color(0.85098, 0.937255, 0.219608, 0.25098)

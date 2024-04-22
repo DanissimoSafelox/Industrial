@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwtk2hsm3cinx"]
+
+[ext_resource type="Script" path="res://Interactive_objects/cake/cake.gd" id="1_pm4nf"]
+[ext_resource type="Texture2D" uid="uid://dttr23w2rnc7b" path="res://Assets/Cake.png" id="1_vywge"]
+[ext_resource type="PackedScene" uid="uid://doy0m8otc8qq4" path="res://Entities_stats/hurt_box.tscn" id="2_qoqtp"]
+[ext_resource type="PackedScene" uid="uid://4n51yy0ou82g" path="res://Entities_stats/health_stat.tscn" id="3_3bvjx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2hlq"]
+size = Vector2(13, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atcn8"]
+size = Vector2(8, 20)
+
+[node name="Cake" type="Node2D"]
+script = ExtResource("1_pm4nf")
+
+[node name="Cake" type="Sprite2D" parent="."]
+position = Vector2(7, -8)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_vywge")
+
+[node name="Hurt_Box" parent="." node_paths=PackedStringArray("health_stat") instance=ExtResource("2_qoqtp")]
+collision_layer = 8
+collision_mask = 16
+health_stat = NodePath("../Health_stat")
+
+[node name="CollisionShape2D" parent="Hurt_Box" index="0"]
+position = Vector2(0.5, -9.5)
+shape = SubResource("RectangleShape2D_c2hlq")
+
+[node name="Health_stat" parent="." instance=ExtResource("3_3bvjx")]
+MAX_HEALTH = 1
+
+[node name="Take_box" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Take_box"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_atcn8")
+debug_color = Color(0.666667, 0.513726, 0.0117647, 0.419608)
+
+[connection signal="no_health" from="Health_stat" to="." method="_on_health_stat_no_health"]
+[connection signal="body_entered" from="Take_box" to="." method="_on_take_box_body_entered"]
+
+[editable path="Hurt_Box"]

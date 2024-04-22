@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TextDialogs" load_steps=2 format=3 uid="uid://b6se53mni67st"]
+
+[ext_resource type="Script" path="res://Interactive_objects/cake/Resources/Text_dialogs.gd" id="1_7txgp"]
+
+[resource]
+script = ExtResource("1_7txgp")
+cube_greetings = "Здравствуйте, вам БАН!"

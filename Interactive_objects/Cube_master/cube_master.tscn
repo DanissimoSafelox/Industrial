@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://2cle0h8gowwc"]
+
+[ext_resource type="Texture2D" uid="uid://xnv8bso27h3m" path="res://Assets/Cube_MASTER.png" id="1_b8f11"]
+[ext_resource type="Script" path="res://Interactive_objects/Cube_master/cube_master.gd" id="1_pfynq"]
+[ext_resource type="PackedScene" uid="uid://dwtk2hsm3cinx" path="res://Interactive_objects/cake/cake.tscn" id="2_qc1cp"]
+[ext_resource type="PackedScene" uid="uid://bmihcaofhp4ty" path="res://Entities_stats/dialoger.tscn" id="4_a3osu"]
+
+[sub_resource type="Animation" id="Animation_e4knd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CubeMaster:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CubeMaster/Effect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fb6gp"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CubeMaster:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CubeMaster/Effect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.196078), Color(1, 1, 1, 1), Color(1, 1, 1, 0.196078), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ud2g1"]
+_data = {
+"RESET": SubResource("Animation_e4knd"),
+"idle": SubResource("Animation_fb6gp")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hl12o"]
+size = Vector2(79.5, 90.25)
+
+[node name="Cube_master" type="Node2D"]
+script = ExtResource("1_pfynq")
+CAKE = ExtResource("2_qc1cp")
+
+[node name="CubeMaster" type="Sprite2D" parent="."]
+texture = ExtResource("1_b8f11")
+hframes = 4
+
+[node name="Effect" type="Sprite2D" parent="CubeMaster"]
+texture = ExtResource("1_b8f11")
+hframes = 4
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ud2g1")
+}
+autoplay = "idle"
+
+[node name="Dialoger" parent="." instance=ExtResource("4_a3osu")]
+position = Vector2(0, 22)
+dialoger_name = "cube"
+push_caption = "Говорить"
+
+[node name="CollisionShape2D" parent="Dialoger/Area2D" index="0"]
+position = Vector2(0, 8.875)
+shape = SubResource("RectangleShape2D_hl12o")
+
+[editable path="Dialoger"]

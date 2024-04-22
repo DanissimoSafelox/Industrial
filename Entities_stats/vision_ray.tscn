@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcjbvguge15dv"]
+
+[ext_resource type="Script" path="res://Entities_stats/vision_ray.gd" id="1_n56o7"]
+
+[node name="Vision_ray" type="RayCast2D"]
+collision_mask = 3
+script = ExtResource("1_n56o7")

@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://blf20aye2bwkt"]
+
+[ext_resource type="PackedScene" uid="uid://dkkbr7u2vw8hw" path="res://Player/Scenes/Player.tscn" id="1_tnhk7"]
+[ext_resource type="Script" path="res://world.gd" id="1_vgtng"]
+[ext_resource type="Shader" path="res://Effects/WhiteShader.gdshader" id="3_4n1eb"]
+[ext_resource type="Resource" uid="uid://dvniyrrl8rqcr" path="res://Interactive_objects/cake/Resources/Saves.tres" id="3_hvo1w"]
+[ext_resource type="Resource" uid="uid://b6se53mni67st" path="res://Interactive_objects/cake/Resources/Text_dialogs.tres" id="4_787b2"]
+[ext_resource type="PackedScene" uid="uid://3j262mclkg20" path="res://menu.tscn" id="5_6147h"]
+[ext_resource type="PackedScene" uid="uid://cbyko2mvey6t0" path="res://UI.tscn" id="7_lygck"]
+[ext_resource type="PackedScene" uid="uid://ckqauhb1gacjp" path="res://Levels/cube_master_room.tscn" id="7_wfvsy"]
+[ext_resource type="PackedScene" uid="uid://pvrcoomkvs3" path="res://world_message.tscn" id="8_ok1b3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_riu3f"]
+resource_local_to_scene = true
+shader = ExtResource("3_4n1eb")
+shader_parameter/active = true
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_vgtng")
+start_level = ExtResource("7_wfvsy")
+memory = ExtResource("3_hvo1w")
+text_dialogs = ExtResource("4_787b2")
+
+[node name="Player" parent="." instance=ExtResource("1_tnhk7")]
+position = Vector2(320, 40)
+
+[node name="Camera_fixator" parent="Player" index="1"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Main_sprite" parent="Player" index="2"]
+material = SubResource("ShaderMaterial_riu3f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 20)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.15
+drag_top_margin = 0.3
+drag_right_margin = 0.15
+drag_bottom_margin = 0.3
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("7_lygck")]
+
+[node name="World_message" parent="CanvasLayer" instance=ExtResource("8_ok1b3")]
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource("5_6147h")]
+process_mode = 3
+visible = false
+
+[connection signal="boy_next_door" from="Player" to="." method="_on_player_boy_next_door"]
+[connection signal="dialog_button_change" from="Player" to="." method="_on_player_dialog_button_change"]
+[connection signal="interact" from="Player" to="." method="_on_player_interact"]
+[connection signal="next_dialog" from="Player" to="." method="_on_player_next_dialog"]
+[connection signal="pause_menu" from="Player" to="." method="_on_player_pause_menu"]
+[connection signal="update_cash" from="Player" to="." method="_on_player_update_cash"]
+[connection signal="taking_damage" from="Player/Health_stat" to="." method="_on_health_stat_taking_damage"]
+[connection signal="animation_finished" from="CanvasLayer/UI/AnimationShade" to="." method="_on_animation_shade_animation_finished"]
+
+[editable path="Player"]
+[editable path="Player/Attack/Sword_HitBox"]
+[editable path="Player/Hurt_Box"]
+[editable path="CanvasLayer/UI"]
+[editable path="CanvasLayer/World_message"]
+[editable path="CanvasLayer/Menu"]

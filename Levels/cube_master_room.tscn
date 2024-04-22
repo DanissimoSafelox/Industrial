@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckqauhb1gacjp"]
+
+[ext_resource type="PackedScene" uid="uid://bxsnbdom55php" path="res://Assets/tile_map.tscn" id="1_am36t"]
+[ext_resource type="Script" path="res://Levels/Level.gd" id="1_ua7ol"]
+[ext_resource type="Texture2D" uid="uid://cd5dxv7y5othr" path="res://Assets/zavod_room.jpg" id="2_2xag0"]
+[ext_resource type="PackedScene" uid="uid://2cle0h8gowwc" path="res://Interactive_objects/Cube_master/cube_master.tscn" id="2_maw3b"]
+[ext_resource type="PackedScene" uid="uid://vgc5dhab0eqs" path="res://Interactive_objects/Door/door.tscn" id="3_ychcp"]
+[ext_resource type="PackedScene" uid="uid://civmd0jvf7wd" path="res://camera_area.tscn" id="5_27wf1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26r8e"]
+size = Vector2(32, 7)
+
+[node name="Cube_master_room" type="Node2D" node_paths=PackedStringArray("camera_area", "dialoger", "Background", "OuterWorld")]
+script = ExtResource("1_ua7ol")
+camera_area = NodePath("Camera_area")
+dialoger = NodePath("Cube_master")
+Background = NodePath("ZavodRoom")
+OuterWorld = NodePath("TileMap")
+
+[node name="ZavodRoom" type="Sprite2D" parent="."]
+modulate = Color(0.196078, 0.737255, 0.980392, 1)
+position = Vector2(171.5, 89.5)
+scale = Vector2(1.37813, 0.836449)
+texture = ExtResource("2_2xag0")
+
+[node name="TileMap" parent="." instance=ExtResource("1_am36t")]
+layer_0/tile_data = PackedInt32Array(458764, 851968, 0, 458765, 851968, 0, 458766, 851968, 0, 262160, 851968, 0, 196624, 851968, 0, 131088, 851968, 0, 65552, 851968, 0, 327696, 851968, 0, 393232, 851968, 0, 458768, 851968, 0, 458767, 851968, 0, 458763, 851968, 0, 393228, 851968, 0, 393229, 851968, 0, 393230, 851968, 0, 393231, 851968, 0, 327695, 851968, 0, 327694, 851968, 0, 327693, 851968, 0, 720896, 851968, 0, 720897, 851968, 0, 720898, 851968, 0, 720899, 851968, 0, 720900, 851968, 0, 720901, 851968, 0, 720902, 851968, 0, 720908, 851968, 0, 720909, 851968, 0, 720907, 851968, 0, 720906, 851968, 0, 720905, 851968, 0, 720904, 851968, 0, 720903, 851968, 0, 720910, 851968, 0, 720911, 851968, 0, 720912, 851968, 0, 524298, 851968, 0, 524299, 851968, 0, 524300, 851968, 0, 524301, 851968, 0, 524302, 851968, 0, 524303, 851968, 0, 524304, 851968, 0, 589833, 851968, 0, 589834, 851968, 0, 589835, 851968, 0, 589836, 851968, 0, 589837, 851968, 0, 589838, 851968, 0, 589839, 851968, 0, 589840, 851968, 0, 0, 851968, 0, 1, 851968, 0, 2, 851968, 0, 3, 851968, 0, 4, 851968, 0, 5, 851968, 0, 6, 851968, 0, 10, 851968, 0, 11, 851968, 0, 12, 851968, 0, 13, 851968, 0, 14, 851968, 0, 15, 851968, 0, 16, 851968, 0, 7, 851968, 0, 786433, 851968, 0, 786434, 851968, 0, 786435, 851968, 0, 786436, 851968, 0, 786437, 851968, 0, 786438, 851968, 0, 786439, 851968, 0, 786440, 851968, 0, 786441, 851968, 0, 786442, 851968, 0, 786444, 851968, 0, 786445, 851968, 0, 786446, 851968, 0, 786447, 851968, 0, 786448, 851968, 0, 786456, 851968, 0, 720920, 851968, 0, 720919, 851968, 0, 720918, 851968, 0, 720917, 851968, 0, 720916, 851968, 0, 720915, 851968, 0, 720914, 851968, 0, 786449, 851968, 0, 786455, 851968, 0, 786454, 851968, 0, 786453, 851968, 0, 786452, 851968, 0, 786451, 851968, 0, 786450, 851968, 0, 720913, 851968, 0, 655384, 851968, 0, 589848, 851968, 0, 524312, 851968, 0, 458776, 851968, 0, 393240, 851968, 0, 327704, 851968, 0, 262168, 851968, 0, 196632, 851968, 0, 131096, 851968, 0, 65560, 851968, 0, 24, 851968, 0, 23, 851968, 0, 22, 851968, 0, 21, 851968, 0, 20, 851968, 0, 19, 851968, 0, 18, 851968, 0, 17, 851968, 0, 196615, 851968, 0, 196616, 851968, 0, 196617, 851968, 0, 196618, 851968, 0, 196619, 851968, 0, 196620, 851968, 0, 786432, 851968, 0, 786443, 851968, 0, 851967, 851968, 0, 851966, 851968, 0, 851965, 851968, 0, 851964, 851968, 0, 786428, 851968, 0, 786429, 851968, 0, 786430, 851968, 0, 786431, 851968, 0, 720892, 851968, 0, 655356, 851968, 0, 589820, 851968, 0, 524284, 851968, 0, 458748, 851968, 0, 393212, 851968, 0, 327676, 851968, 0, 262140, 851968, 0, 196604, 851968, 0, 131068, 851968, 0, 65532, 851968, 0, 65533, 851968, 0, 65534, 851968, 0, 65535, 851968, 0)
+
+[node name="Cube_master" parent="." instance=ExtResource("2_maw3b")]
+position = Vector2(-7, 103)
+
+[node name="Door" parent="." instance=ExtResource("3_ychcp")]
+position = Vector2(136, 37)
+current_scene = "res://Levels/cube_master_room.tscn"
+exit_scene = "res://Levels/industrial_level_1.tscn"
+enter_vector = Vector2(0, -600)
+
+[node name="CollisionShape2D" parent="Door" index="0"]
+position = Vector2(8, -34)
+shape = SubResource("RectangleShape2D_26r8e")
+
+[node name="Camera_area" parent="." instance=ExtResource("5_27wf1")]
+offset_left = -62.0
+offset_right = 399.0
+offset_bottom = 206.0
+
+[editable path="Cube_master"]
+[editable path="Cube_master/Dialoger"]
+[editable path="Door"]

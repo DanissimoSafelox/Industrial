@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://dbc4yh8bjy7q4"]
+
+[ext_resource type="Script" path="res://Interactive_objects/Trash_saver/trash_saver.gd" id="1_tcfcy"]
+[ext_resource type="Texture2D" uid="uid://dw0icddtb2dx6" path="res://Interactive_objects/Trash_saver/Trash_saver.png" id="1_wxl0h"]
+[ext_resource type="PackedScene" uid="uid://doy0m8otc8qq4" path="res://Entities_stats/hurt_box.tscn" id="3_mytpv"]
+[ext_resource type="PackedScene" uid="uid://4n51yy0ou82g" path="res://Entities_stats/health_stat.tscn" id="4_br25t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0ryf"]
+atlas = ExtResource("1_wxl0h")
+region = Rect2(0, 0, 20, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mffg"]
+atlas = ExtResource("1_wxl0h")
+region = Rect2(20, 0, 20, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_677cx"]
+atlas = ExtResource("1_wxl0h")
+region = Rect2(40, 0, 20, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ao73i"]
+atlas = ExtResource("1_wxl0h")
+region = Rect2(60, 0, 20, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68phl"]
+atlas = ExtResource("1_wxl0h")
+region = Rect2(80, 0, 20, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rgyr"]
+atlas = ExtResource("1_wxl0h")
+region = Rect2(100, 0, 20, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_arbqc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0ryf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mffg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_677cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ao73i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68phl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rgyr")
+}],
+"loop": false,
+"name": &"death",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j31nh"]
+size = Vector2(4, 7)
+
+[node name="Trash_saver" type="Node2D"]
+script = ExtResource("1_tcfcy")
+
+[node name="SpriteTrashSaver" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 12.5)
+sprite_frames = SubResource("SpriteFrames_arbqc")
+animation = &"death"
+
+[node name="Hurt_Box" parent="." node_paths=PackedStringArray("health_stat") instance=ExtResource("3_mytpv")]
+collision_layer = 8
+collision_mask = 16
+health_stat = NodePath("../Health_stat")
+
+[node name="CollisionShape2D" parent="Hurt_Box" index="0"]
+position = Vector2(8, 12.5)
+shape = SubResource("RectangleShape2D_j31nh")
+
+[node name="Health_stat" parent="." instance=ExtResource("4_br25t")]
+MAX_HEALTH = 1
+
+[node name="Coin_extractor" type="Node2D" parent="."]
+position = Vector2(8, 9)
+
+[connection signal="animation_finished" from="SpriteTrashSaver" to="." method="_on_sprite_trash_saver_animation_finished"]
+[connection signal="no_health" from="Health_stat" to="." method="_on_health_stat_no_health"]
+
+[editable path="Hurt_Box"]

@@ -1,0 +1,14 @@
+res://world.tscn
+res://Player/Scenes/Player.tscn
+res://Interactive_objects/Cube_master/cube_master.tscn
+res://Levels/cube_master_room.tscn
+res://Enemy/Visor/visor.tscn
+res://Entities_stats/dialoger.tscn
+res://UI.tscn
+res://world_message.tscn
+res://Enemy/Turret/turret.tscn
+res://Effects/missle.tscn
+res://Interactive_objects/Door/door.tscn
+res://Entities_stats/hurt_box.tscn
+res://Entities_stats/health_stat.tscn
+res://Entities_stats/hit_box.tscn
